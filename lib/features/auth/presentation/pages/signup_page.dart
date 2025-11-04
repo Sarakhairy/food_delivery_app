@@ -3,12 +3,14 @@ import 'package:food_delivery_app/core/constants/app_colors.dart';
 import 'package:food_delivery_app/shared/custom_text.dart';
 import 'package:food_delivery_app/shared/custom_text_field.dart';
 
-class LoginPage extends StatelessWidget {
+class SignupPage extends StatelessWidget {
+  final TextEditingController nameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passController = TextEditingController();
+  final TextEditingController confirmPassController = TextEditingController();
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
-  LoginPage({super.key});
+  SignupPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -26,16 +28,15 @@ class LoginPage extends StatelessWidget {
                 key: formKey,
                 child: Column(
                   children: [
-                    const SizedBox(height: 100),
+                    const SizedBox(height: 50),
                     Image.asset('assets/images/logo.png', width: 300),
-                    const SizedBox(height: 10),
-                    const CustomText(
-                      weight: FontWeight.w600,
-                      text: 'Welcome Back, Discover The Fast Food',
-                      color: Colors.white,
-                      size: 13,
+                    SizedBox(height: 50),
+                    CustomTextField(
+                      hint: "Name",
+                      isPassword: false,
+                      controller: nameController,
                     ),
-                    SizedBox(height: 70),
+                    const SizedBox(height: 20),
                     CustomTextField(
                       hint: "Email address",
                       isPassword: false,
@@ -46,6 +47,20 @@ class LoginPage extends StatelessWidget {
                       hint: "Password",
                       isPassword: true,
                       controller: passController,
+                    ),
+                    const SizedBox(height: 20),
+                    CustomTextField(
+                      hint: "Confirm password",
+                      isPassword: true,
+                      controller: confirmPassController,
+                      validator: (v) {
+                        if (confirmPassController.text != passController.text) {
+                          return "Passwords are't match";
+                        }
+                        if (confirmPassController.text.trim().isEmpty) {
+                          return "Please confirm password";
+                        }
+                      },
                     ),
                     const SizedBox(height: 30),
                     SizedBox(
@@ -60,12 +75,10 @@ class LoginPage extends StatelessWidget {
                           ),
                         ),
                         onPressed: () {
-                          if(formKey.currentState!.validate()){
-                            
-                          }
+                          if (formKey.currentState!.validate()) {}
                         },
                         child: CustomText(
-                          text: "Login",
+                          text: "Sign Up",
                           color: AppColors.primaryColor,
                           size: 15,
                           weight: FontWeight.w800,

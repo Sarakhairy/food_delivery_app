@@ -6,11 +6,12 @@ class CustomTextField extends StatefulWidget {
   final String hint;
   final bool isPassword;
   final TextEditingController controller;
+  final String? Function(String?)? validator;
   const CustomTextField({
     super.key,
     required this.hint,
     required this.isPassword,
-    required this.controller,
+    required this.controller, this.validator,
   });
 
   @override
@@ -32,7 +33,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
       cursorColor: AppColors.primaryColor,
       cursorHeight: 20,
       obscureText: _obscureText,
-      validator: (v) {
+      validator: widget.validator==null? widget.validator:(v) {
         if (v == null || v.isEmpty) {
           return "Please fill ${widget.hint}";
         }
@@ -46,7 +47,9 @@ class _CustomTextFieldState extends State<CustomTextField> {
                     _obscureText = !_obscureText;
                   });
                 },
-                child: _obscureText? Icon(Icons.visibility): Icon(Icons.visibility_off),
+                child: _obscureText
+                    ? Icon(Icons.visibility)
+                    : Icon(Icons.visibility_off),
               )
             : null,
       ),
