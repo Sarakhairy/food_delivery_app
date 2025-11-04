@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 final ThemeData themeData = ThemeData(
+  scaffoldBackgroundColor: Colors.white,
   inputDecorationTheme:  InputDecorationTheme(
     enabledBorder: OutlineInputBorder(
       borderSide: BorderSide(color: Colors.white)
@@ -14,5 +15,6 @@ final ThemeData themeData = ThemeData(
     fillColor: Colors.white,
     filled: true,
     
-  )
+  ),
+  splashFactory: InkRipple.splashFactory,
 );
