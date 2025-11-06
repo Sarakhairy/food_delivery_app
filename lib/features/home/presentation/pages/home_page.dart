@@ -3,6 +3,7 @@ import 'package:food_delivery_app/features/home/presentation/widgets/card_item.d
 import 'package:food_delivery_app/features/home/presentation/widgets/categories_widget.dart';
 import 'package:food_delivery_app/features/home/presentation/widgets/search_widget.dart';
 import 'package:food_delivery_app/features/home/presentation/widgets/user_header.dart';
+import 'package:food_delivery_app/features/product/presentation/pages/product_details_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -48,11 +49,22 @@ class _HomePageState extends State<HomePage> {
                     context,
                     index,
                   ) {
-                    return CardItem(
-                      image: "assets/images/test.png",
-                      name: "Cheeseburger",
-                      desc: "Wendy's Burger",
-                      rate: "4.9",
+                    return GestureDetector(
+                      onTap: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return ProductDetailsPage();
+                            },
+                          ),
+                        );
+                      },
+                      child: CardItem(
+                        image: "assets/images/test.png",
+                        name: "Cheeseburger",
+                        desc: "Wendy's Burger",
+                        rate: "4.9",
+                      ),
                     );
                   }),
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(

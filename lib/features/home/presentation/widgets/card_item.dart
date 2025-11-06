@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:food_delivery_app/shared/custom_text.dart';
 
@@ -6,11 +7,19 @@ class CardItem extends StatelessWidget {
   final String name;
   final String desc;
   final String rate;
-  const CardItem({super.key, required this.image, required this.name, required this.desc, required this.rate});
+  const CardItem({
+    super.key,
+    required this.image,
+    required this.name,
+    required this.desc,
+    required this.rate,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Card(
+    return Stack(
+      children: [
+        Card(
       color: Colors.white,
       child: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -32,6 +41,16 @@ class CardItem extends StatelessWidget {
           ],
         ),
       ),
+    ),
+    Positioned(
+      right: 10,
+      top: 10,
+      child: CircleAvatar(
+        backgroundColor: Colors.grey.shade100,
+        radius: 18,
+        child: Icon(CupertinoIcons.heart_fill,color: Colors.red,)),
+    )
+      ],
     );
   }
 }
