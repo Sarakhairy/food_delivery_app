@@ -44,7 +44,7 @@ class _RootState extends State<Root> {
           backgroundColor: Colors.transparent,
           type: BottomNavigationBarType.fixed,
           selectedItemColor: Colors.white,
-          unselectedItemColor: Colors.grey.shade700,
+          unselectedItemColor: Color(0xffB0c9b2),
           currentIndex: currentScreen,
           items: [
             BottomNavigationBarItem(

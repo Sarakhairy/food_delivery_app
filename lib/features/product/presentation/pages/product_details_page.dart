@@ -67,8 +67,9 @@ class ProductDetailsPage extends StatelessWidget {
                   },
                 ),
               ),
-              const SizedBox(height: 50),
+              const SizedBox(height: 30),
               CustomButton(text: "Add to cart", onPressed: () {}),
+              const SizedBox(height: 20,)
             ],
           ),
         ),
