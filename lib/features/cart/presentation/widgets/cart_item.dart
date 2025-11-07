@@ -1,22 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery_app/shared/custom_text.dart';
 
-class CartItem extends StatelessWidget {
+class CartItem extends StatefulWidget {
   final String image, text, desc;
-  final void Function()? onAdd;
-  final void Function()? onDelete;
+
   final void Function()? onRemove;
-  final int number;
+
   const CartItem({
     super.key,
     required this.image,
     required this.text,
     required this.desc,
-    this.onAdd,
-    this.onDelete,
-    this.onRemove, required this.number,
+
+    this.onRemove,
   });
 
+  @override
+  State<CartItem> createState() => _CartItemState();
+}
+
+class _CartItemState extends State<CartItem> {
+  int num = 1;
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -29,9 +33,9 @@ class CartItem extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Image.asset(image, width: 100),
-                CustomText(text: text, weight: FontWeight.bold),
-                CustomText(text: desc),
+                Image.asset(widget.image, width: 100),
+                CustomText(text: widget.text, weight: FontWeight.bold),
+                CustomText(text: widget.desc),
               ],
             ),
             Column(
@@ -45,11 +49,15 @@ class CartItem extends StatelessWidget {
                         foregroundColor: Colors.white,
                       ),
 
-                      onPressed: onAdd,
+                      onPressed: () {
+                        setState(() {
+                          num++;
+                        });
+                      },
                       child: Icon(Icons.add),
                     ),
                     const SizedBox(height: 20),
-                    CustomText(text: number.toString(), weight: FontWeight.bold, size: 20),
+                    CustomText(text: "$num", weight: FontWeight.bold, size: 20),
                     const SizedBox(height: 20),
 
                     ElevatedButton(
@@ -58,7 +66,13 @@ class CartItem extends StatelessWidget {
                         backgroundColor: Color(0xfff1f1f1),
                         foregroundColor: Colors.white,
                       ),
-                      onPressed: onDelete,
+                      onPressed: num<=1?null:() {
+                        setState(() {
+                          if (num > 1) {
+                            num--;
+                          }
+                        });
+                      },
                       child: Icon(Icons.remove, color: Color(0xffd32f2f)),
                     ),
                   ],
@@ -74,7 +88,7 @@ class CartItem extends StatelessWidget {
                     padding: EdgeInsets.symmetric(horizontal: 30, vertical: 12),
                   ),
 
-                  onPressed: onRemove,
+                  onPressed: widget.onRemove,
                   child: Text("Remove"),
                 ),
               ],

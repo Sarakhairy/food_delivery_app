@@ -21,10 +21,9 @@ class CartPage extends StatelessWidget {
                       image: "assets/images/test.png",
                       text: "Hamburger",
                       desc: "Veggie Burger",
-                      onAdd: () {},
-                      onDelete: () {},
+                  
                       onRemove: () {},
-                      number: 1,
+
                     );
                   },
                 ),
