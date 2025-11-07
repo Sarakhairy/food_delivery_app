@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:food_delivery_app/features/auth/presentation/pages/login_page.dart';
 import 'package:food_delivery_app/features/cart/presentation/widgets/cart_item.dart';
+import 'package:food_delivery_app/features/checkout/presentation/pages/checkout_page.dart';
 import 'package:food_delivery_app/features/product/presentation/widgets/custom_button.dart';
 
 class CartPage extends StatelessWidget {
@@ -21,15 +23,25 @@ class CartPage extends StatelessWidget {
                       image: "assets/images/test.png",
                       text: "Hamburger",
                       desc: "Veggie Burger",
-                  
-                      onRemove: () {},
 
+                      onRemove: () {},
                     );
                   },
                 ),
               ),
               const SizedBox(height: 10),
-              CustomButton(text: "Checkout", onPressed: () {}),
+              CustomButton(
+                text: "Checkout",
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return CheckoutPage();
+                      },
+                    ),
+                  );
+                },
+              ),
               const SizedBox(height: 10),
             ],
           ),
