@@ -12,9 +12,13 @@ class CustomButton extends StatelessWidget {
     return Container(
     
       padding: const EdgeInsets.all(16),
+      margin:  EdgeInsets.symmetric(vertical: 10),
       decoration: BoxDecoration(
         color: Colors.grey[100],
         borderRadius: BorderRadius.circular(12),
+                  boxShadow: [
+            BoxShadow(color: Colors.grey, blurRadius: 15, offset: Offset(0, 0)),
+          ],
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,

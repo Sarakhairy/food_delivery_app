@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-
+import 'package:food_delivery_app/features/checkout/presentation/widgets/checkout_dialog.dart';
 import 'package:food_delivery_app/features/checkout/presentation/widgets/checkout_widget.dart';
+import 'package:food_delivery_app/features/checkout/presentation/widgets/custom_bottom_sheet.dart';
+import 'package:food_delivery_app/features/checkout/presentation/widgets/payment_button.dart';
 import 'package:food_delivery_app/shared/custom_text.dart';
 
 class CheckoutPage extends StatefulWidget {
@@ -130,45 +132,6 @@ class _CheckoutPageState extends State<CheckoutPage> {
           ),
         ),
       ),
-      bottomSheet: Container(
-        height: 120,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(30),
-          color: Colors.white,
-          boxShadow: [
-            BoxShadow(color: Colors.grey,blurRadius: 10,offset: Offset(0, 0))
-          ]
-        ),
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  CustomText(text: "Total",size: 15,),
-                  CustomText(text: "18.9\$",size: 24,),
-                ],
-              ),
-              ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              fixedSize: Size(150, 50),
-              backgroundColor: Color(0xff145a32),
-              foregroundColor: Colors.white,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
-              ),
-              elevation: 4,
-            ),
-            onPressed: (){},
-            child: CustomText(text: "Add to cart", color: Colors.white, size: 16),
-          ),
-            ],
-          ),
-        ),
-      ),
-    );
+      bottomSheet: CustomBottomSheet() );
   }
 }

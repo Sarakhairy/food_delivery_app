@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:food_delivery_app/features/auth/presentation/pages/login_page.dart';
 import 'package:food_delivery_app/features/cart/presentation/widgets/cart_item.dart';
+import 'package:food_delivery_app/features/cart/presentation/widgets/custom_button.dart';
 import 'package:food_delivery_app/features/checkout/presentation/pages/checkout_page.dart';
-import 'package:food_delivery_app/features/product/presentation/widgets/custom_button.dart';
 
 class CartPage extends StatelessWidget {
   const CartPage({super.key});
@@ -29,20 +28,18 @@ class CartPage extends StatelessWidget {
                   },
                 ),
               ),
-              const SizedBox(height: 10),
               CustomButton(
-                text: "Checkout",
-                onPressed: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) {
-                        return CheckoutPage();
-                      },
-                    ),
-                  );
-                },
-              ),
-              const SizedBox(height: 10),
+                  text: "Checkout",
+                  onPressed: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return CheckoutPage();
+                        },
+                      ),
+                    );
+                  },
+                ),
             ],
           ),
         ),
