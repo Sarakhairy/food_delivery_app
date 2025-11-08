@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:food_delivery_app/core/constants/app_colors.dart';
-import 'package:food_delivery_app/features/auth/presentation/pages/profile_page.dart';
+import 'package:food_delivery_app/features/profile/presentation/page/profile_page.dart';
 import 'package:food_delivery_app/features/cart/presentation/pages/cart_page.dart';
 import 'package:food_delivery_app/features/home/presentation/pages/home_page.dart';
 import 'package:food_delivery_app/features/orderHistory/presentation/pages/order_history_page.dart';

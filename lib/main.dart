@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Food Delivery app',
       theme: themeData,
-      home:  Root()
+      home:  SplashPage()
     );
   }
 }
