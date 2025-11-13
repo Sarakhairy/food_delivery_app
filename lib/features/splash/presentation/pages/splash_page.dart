@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery_app/core/constants/app_colors.dart';
+import 'package:food_delivery_app/features/auth/presentation/pages/login_page.dart';
 import 'package:food_delivery_app/root.dart';
 
 class SplashPage extends StatefulWidget {
@@ -16,7 +17,7 @@ class _SplashPageState extends State<SplashPage> {
       Navigator.of(context).push(
         MaterialPageRoute(
           builder: (context) {
-            return Root();
+            return LoginPage();
           },
         ),
       );
@@ -27,7 +28,7 @@ class _SplashPageState extends State<SplashPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.primaryColor,
+      backgroundColor:  Color(0xFFFFF8F5),
       body: Center(child: Image.asset('assets/images/logo.png',width: 250,)),
     );
   }

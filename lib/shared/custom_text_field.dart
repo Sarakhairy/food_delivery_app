@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:food_delivery_app/core/constants/app_colors.dart';
 
@@ -7,11 +6,13 @@ class CustomTextField extends StatefulWidget {
   final bool isPassword;
   final TextEditingController controller;
   final String? Function(String?)? validator;
+
   const CustomTextField({
     super.key,
     required this.hint,
     required this.isPassword,
-    required this.controller, this.validator,
+    required this.controller,
+    this.validator,
   });
 
   @override
@@ -20,6 +21,7 @@ class CustomTextField extends StatefulWidget {
 
 class _CustomTextFieldState extends State<CustomTextField> {
   late bool _obscureText;
+
   @override
   void initState() {
     _obscureText = widget.isPassword;
@@ -33,13 +35,18 @@ class _CustomTextFieldState extends State<CustomTextField> {
       cursorColor: AppColors.primaryColor,
       cursorHeight: 20,
       obscureText: _obscureText,
-      validator: widget.validator==null? widget.validator:(v) {
-        if (v == null || v.isEmpty) {
-          return "Please fill ${widget.hint}";
-        }
-      },
+      validator: widget.validator ??
+          (value) {
+            if (value == null || value.trim().isEmpty) {
+              return "Please fill ${widget.hint}";
+            }
+            return null; 
+          },
       decoration: InputDecoration(
         hintText: widget.hint,
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+        ),
         suffixIcon: widget.isPassword
             ? GestureDetector(
                 onTap: () {
@@ -47,9 +54,9 @@ class _CustomTextFieldState extends State<CustomTextField> {
                     _obscureText = !_obscureText;
                   });
                 },
-                child: _obscureText
-                    ? Icon(Icons.visibility)
-                    : Icon(Icons.visibility_off),
+                child: Icon(
+                  _obscureText ? Icons.visibility : Icons.visibility_off,
+                ),
               )
             : null,
       ),

@@ -13,25 +13,35 @@ class ApiService {
       return ApiExceptions.handleError(e);
     }
   }
-    Future<dynamic> post(String endPoint,Map<String,dynamic>? body) async {
+
+ Future<dynamic> post(String endPoint, Map<String, dynamic>? body) async {
+  try {
+    final response = await _dioClient.dio.post(endPoint, data: body);
+    print("response is $response.............");
+    return response.data;
+  } on DioError catch (e) {
+    print("❌ DioError caught:");
+    print("Message: ${e.message}");
+    print("Response: ${e.response?.data}");
+    print("Status Code: ${e.response?.statusCode}");
+    print("Headers: ${e.response?.headers}");
+    return ApiExceptions.handleError(e);
+  }
+}
+
+
+  Future<dynamic> put(String endPoint, Map<String, dynamic> body) async {
     try {
-      final response = await _dioClient.dio.post(endPoint,data: body);
+      final response = await _dioClient.dio.put(endPoint, data: body);
       return response.data;
     } on DioError catch (e) {
       return ApiExceptions.handleError(e);
     }
   }
-    Future<dynamic> put(String endPoint,Map<String,dynamic> body) async {
+
+  Future<dynamic> delete(String endPoint, Map<String, dynamic> body) async {
     try {
-      final response = await _dioClient.dio.put(endPoint,data: body);
-      return response.data;
-    } on DioError catch (e) {
-      return ApiExceptions.handleError(e);
-    }
-  }
-    Future<dynamic> delete(String endPoint,Map<String,dynamic> body) async {
-    try {
-      final response = await _dioClient.dio.delete(endPoint,data: body);
+      final response = await _dioClient.dio.delete(endPoint, data: body);
       return response.data;
     } on DioError catch (e) {
       return ApiExceptions.handleError(e);
