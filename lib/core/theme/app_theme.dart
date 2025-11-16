@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 final ThemeData themeData = ThemeData(
-  scaffoldBackgroundColor: Colors.white,
+  scaffoldBackgroundColor: const Color(0xFFFFF8F5),
   inputDecorationTheme:  InputDecorationTheme(
     enabledBorder: OutlineInputBorder(
       borderSide: BorderSide(color: Colors.white)

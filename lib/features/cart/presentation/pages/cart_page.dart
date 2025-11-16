@@ -9,8 +9,7 @@ class CartPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Padding(
+      body:  Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15.0),
           child: Column(
             children: [
@@ -40,10 +39,11 @@ class CartPage extends StatelessWidget {
                     );
                   },
                 ),
+                SizedBox(height: 100,)
             ],
           ),
         ),
-      ),
+      
     );
   }
 }

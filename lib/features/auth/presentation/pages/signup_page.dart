@@ -36,7 +36,7 @@ class _SignupPageState extends State<SignupPage> {
           emailController.text.trim(),
           passController.text.trim(),
         );
-       
+
         if (user != null) {
           Navigator.of(context).push(
             MaterialPageRoute(
@@ -47,10 +47,10 @@ class _SignupPageState extends State<SignupPage> {
           );
         }
       } catch (e) {
-         print('user $e  .................');
+        print('user $e  .................');
         String errorMsg = "unhandled error in register";
         if (e is ApiError) {
-          errorMsg = e.message?.toString() ?? "Unknown API error";
+          errorMsg = e.message.toString();
           errorMsg = e.message;
         }
         customSnack(errorMsg);
@@ -117,7 +117,6 @@ class _SignupPageState extends State<SignupPage> {
                         controller: confirmPassController,
                         hint: 'Confirm password',
                         isPassword: true,
-                       
                       ),
                       const SizedBox(height: 35),
 

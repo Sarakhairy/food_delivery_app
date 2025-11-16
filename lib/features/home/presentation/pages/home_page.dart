@@ -20,8 +20,7 @@ class _HomePageState extends State<HomePage> {
         onTap: () {
           FocusScope.of(context).unfocus();
         },
-        child: SafeArea(
-          child: CustomScrollView(
+        child:  CustomScrollView(
             slivers: [
               SliverToBoxAdapter(
                 child: GestureDetector(
@@ -32,6 +31,7 @@ class _HomePageState extends State<HomePage> {
                     padding: EdgeInsetsGeometry.symmetric(horizontal: 15),
                     child: Column(
                       children: [
+                        SizedBox(height: 20,),
                         const UserHeader(),
                         const SearchWidget(),
                         const SizedBox(height: 25),
@@ -43,7 +43,7 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
               SliverPadding(
-                padding: EdgeInsets.symmetric(horizontal: 15),
+                padding: EdgeInsets.only(right: 15,left: 15,bottom: 100),
                 sliver: SliverGrid(
                   delegate: SliverChildBuilderDelegate(childCount: 6, (
                     context,
@@ -76,7 +76,7 @@ class _HomePageState extends State<HomePage> {
               ),
             ],
           ),
-        ),
+        
       ),
     );
   }

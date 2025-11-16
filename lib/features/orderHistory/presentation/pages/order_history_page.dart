@@ -7,12 +7,11 @@ class OrderHistoryPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Padding(
+      body:  Padding(
           padding: EdgeInsets.symmetric(horizontal: 15),
           child: ListView.builder(
             padding: const EdgeInsets.only(bottom: 120, top: 10),
-            itemCount: 3,
+            itemCount: 7,
             itemBuilder: (context, index) {
               return Card(
                 color: Colors.white,
@@ -80,7 +79,7 @@ class OrderHistoryPage extends StatelessWidget {
             },
           ),
         ),
-      ),
+
     );
   }
 }
