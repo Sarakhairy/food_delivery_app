@@ -40,7 +40,7 @@ class _RootState extends State<Root> {
   child: Container(
     height: 70,
     decoration: BoxDecoration(
-      color: Colors.white,
+      color: Colors.white.withOpacity(0.9),
       borderRadius: BorderRadius.circular(40),
       boxShadow: [
         BoxShadow(

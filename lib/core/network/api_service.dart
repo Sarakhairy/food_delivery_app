@@ -14,12 +14,12 @@ class ApiService {
     }
   }
 
- Future<dynamic> post(String endPoint, Map<String, dynamic>? body) async {
+ Future<dynamic> post(String endPoint, dynamic body) async {
   try {
     final response = await _dioClient.dio.post(endPoint, data: body);
     print("response is $response.............");
     return response.data;
-  } on DioError catch (e) {
+  } on DioException catch (e) {
     print("❌ DioError caught:");
     print("Message: ${e.message}");
     print("Response: ${e.response?.data}");
