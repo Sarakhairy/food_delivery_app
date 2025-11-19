@@ -72,7 +72,7 @@ class _HomePageState extends State<HomePage> {
                         Navigator.of(context).push(
                           MaterialPageRoute(
                             builder: (context) {
-                              return ProductDetailsPage();
+                              return ProductDetailsPage(image: product?.image??"",title: product?.name??"",desc: product?.desc??"",);
                             },
                           ),
                         );

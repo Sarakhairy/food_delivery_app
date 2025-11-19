@@ -1,4 +1,6 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:food_delivery_app/core/constants/app_colors.dart';
 
 class ToppingCard extends StatelessWidget {
   final String imageUrl;
@@ -53,7 +55,30 @@ class ToppingCard extends StatelessWidget {
               ),
             ),
           ),
-           Image.asset(imageUrl, fit: BoxFit.contain),
+            SizedBox(
+              height: 90,
+              child: Center(
+                child: CachedNetworkImage(
+                        fit: BoxFit.cover,
+                        imageUrl: imageUrl,
+                        
+                        placeholder: (context, url) {
+                          return SizedBox(
+                            width: 150,
+                            height: 100,
+                            child: Center(child: CircularProgressIndicator(
+                              color: AppColors.primaryColor,
+                            )),
+                          );
+                        },
+                        errorWidget: (context, url, error) {
+                          return Icon(Icons.error);
+                        },
+                      ),
+              ),
+            ),
+                
+           
         ],
       ),
     );
