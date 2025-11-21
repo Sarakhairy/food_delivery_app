@@ -1,8 +1,11 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:food_delivery_app/core/constants/app_colors.dart'
+    show AppColors;
 import 'package:food_delivery_app/shared/custom_text.dart';
 
 class CartItem extends StatefulWidget {
-  final String image, text, desc;
+  final String image, text, spicy;
 
   final void Function()? onRemove;
 
@@ -10,7 +13,7 @@ class CartItem extends StatefulWidget {
     super.key,
     required this.image,
     required this.text,
-    required this.desc,
+    required this.spicy,
 
     this.onRemove,
   });
@@ -33,9 +36,31 @@ class _CartItemState extends State<CartItem> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Image.asset(widget.image, width: 100),
-                CustomText(text: widget.text, weight: FontWeight.bold),
-                CustomText(text: widget.desc),
+                Center(
+                  child: CachedNetworkImage(
+                    imageUrl: widget.image,
+                    width: 100,
+                    placeholder: (context, url) {
+                      return SizedBox(
+                        width: 100,
+                        height: 100,
+                        child: Center(
+                          child: CircularProgressIndicator(
+                            color: AppColors.primaryColor,
+                          ),
+                        ),
+                      );
+                    },
+                    errorWidget: (context, url, error) {
+                      return Center(child: Icon(Icons.error));
+                    },
+                  ),
+                ),
+
+                SizedBox(
+                  width: 180,
+                  child: CustomText(text: widget.text, size: 15,weight: FontWeight.bold,)),
+                CustomText(text: "Spicy: ${widget.spicy}"),
               ],
             ),
             Column(
@@ -45,7 +70,7 @@ class _CartItemState extends State<CartItem> {
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         shape: CircleBorder(),
-                        backgroundColor: Color(0xff1b5e20),
+                        backgroundColor: AppColors.primaryColor,
                         foregroundColor: Colors.white,
                       ),
 
@@ -66,13 +91,15 @@ class _CartItemState extends State<CartItem> {
                         backgroundColor: Color(0xfff1f1f1),
                         foregroundColor: Colors.white,
                       ),
-                      onPressed: num<=1?null:() {
-                        setState(() {
-                          if (num > 1) {
-                            num--;
-                          }
-                        });
-                      },
+                      onPressed: num <= 1
+                          ? null
+                          : () {
+                              setState(() {
+                                if (num > 1) {
+                                  num--;
+                                }
+                              });
+                            },
                       child: Icon(Icons.remove, color: Color(0xffd32f2f)),
                     ),
                   ],

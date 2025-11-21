@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_delivery_app/core/constants/app_colors.dart';
 import 'package:food_delivery_app/shared/custom_text.dart';
 
 class CustomButton extends StatelessWidget {
@@ -38,7 +39,7 @@ class CustomButton extends StatelessWidget {
           ElevatedButton(
             style: ElevatedButton.styleFrom(
               fixedSize: Size(150, 50),
-              backgroundColor: Color(0xff145a32),
+              backgroundColor: AppColors.primaryColor,
               foregroundColor: Colors.white,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(12),

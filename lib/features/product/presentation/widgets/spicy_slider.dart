@@ -7,11 +7,12 @@ class SpicySlider extends StatefulWidget {
   final String image;
   final String title;
   final String desc;
+  final int productId;
   const SpicySlider({
     super.key,
     required this.image,
     required this.title,
-    required this.desc,
+    required this.desc, required this.productId,
   });
 
   @override
@@ -19,16 +20,17 @@ class SpicySlider extends StatefulWidget {
 }
 
 class _SpicySliderState extends State<SpicySlider> {
-  double value = 0.5;
+  
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Center(
           child: CachedNetworkImage(
             imageUrl: widget.image,
-            width: 170,
+            width: 200,
             placeholder: (context, url) {
               return SizedBox(
                 width: 250,
@@ -45,52 +47,23 @@ class _SpicySliderState extends State<SpicySlider> {
             },
           ),
         ),
-        Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              CustomText(text: widget.title, weight: FontWeight.bold),
-              Text(
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const SizedBox(height: 10),
+            CustomText(text: widget.title, weight: FontWeight.bold),
+            const SizedBox(height: 10),
+            SizedBox(
+              width: 330,
+              child: Text(
                 widget.desc,
-                style: TextStyle(fontSize: 10, color: Colors.grey),
-                maxLines: 3,
+                style: TextStyle(fontSize: 12, color: Colors.grey),
+                maxLines: 4,
                 overflow: TextOverflow.ellipsis,
               ),
-              SizedBox(
-                child: Slider(
-                  min: 0,
-                  max: 1,
-                  onChanged: (v) {
-                    setState(() {
-                      value = v;
-                    });
-                  },
-                  value: value,
-                  activeColor: value < 0.5 ? Colors.lightBlueAccent : Colors.red,
-                  inactiveColor: Colors.grey.shade300,
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 15),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Icon(
-                      Icons.ac_unit,
-                      color: Colors.lightBlueAccent,
-                      size: value < 0.5 ? 30 : 24,
-                    ),
-                    Icon(
-                      Icons.whatshot,
-                      color: Colors.red,
-                      size: value > 0.5 ? 30 : 24,
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
+            ),
+           ],
         ),
       ],
     );

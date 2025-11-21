@@ -8,7 +8,6 @@ import 'package:food_delivery_app/features/home/presentation/widgets/user_header
 import 'package:food_delivery_app/features/product/presentation/pages/product_details_page.dart';
 
 class HomePage extends StatefulWidget {
-  
   const HomePage({super.key});
 
   @override
@@ -64,7 +63,7 @@ class _HomePageState extends State<HomePage> {
               padding: EdgeInsets.only(right: 15, left: 15, bottom: 100),
               sliver: SliverGrid(
                 delegate: SliverChildBuilderDelegate(
-                  childCount: products?.length ?? 0,
+                  childCount: products?.length ?? 6,
                   (context, index) {
                     final product = products?[index];
                     return GestureDetector(
@@ -72,16 +71,21 @@ class _HomePageState extends State<HomePage> {
                         Navigator.of(context).push(
                           MaterialPageRoute(
                             builder: (context) {
-                              return ProductDetailsPage(image: product?.image??"",title: product?.name??"",desc: product?.desc??"",);
+                              return ProductDetailsPage(
+                                image: product?.image ?? "",
+                                title: product?.name ?? "",
+                                desc: product?.desc ?? "",
+                                productId: product?.id ??0,
+                              );
                             },
                           ),
                         );
                       },
                       child: CardItem(
-                        image: product?.image?? "",
-                        name: product?.name?? "",
+                        image: product?.image ?? "",
+                        name: product?.name ?? "",
                         desc: product?.desc ?? "",
-                        rate: product?.rate??"",
+                        rate: product?.rate ?? "",
                       ),
                     );
                   },

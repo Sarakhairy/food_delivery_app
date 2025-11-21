@@ -44,7 +44,7 @@ class CardItem extends StatelessWidget {
                       );
                     },
                     errorWidget: (context, url, error) {
-                      return Icon(Icons.error);
+                      return Center(child: Icon(Icons.error));
                     },
                   ),
                 ),

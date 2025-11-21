@@ -6,12 +6,12 @@ class ToppingCard extends StatelessWidget {
   final String imageUrl;
   final String title;
   final VoidCallback onAdd;
-
+  final bool isSelected;
   const ToppingCard({
     super.key,
     required this.imageUrl,
     required this.title,
-    required this.onAdd,
+    required this.onAdd,  this.isSelected = false,
   });
 
   @override
@@ -45,40 +45,40 @@ class ToppingCard extends StatelessWidget {
                   ),
                   GestureDetector(
                     onTap: onAdd,
-                    child: const CircleAvatar(
+                    child:  CircleAvatar(
                       radius: 10,
                       backgroundColor: Colors.red,
-                      child: Icon(Icons.add, color: Colors.white, size: 14),
+                      child: Icon(isSelected?Icons.check: Icons.add, color: Colors.white, size: 14),
                     ),
                   ),
                 ],
               ),
             ),
           ),
-            SizedBox(
-              height: 90,
-              child: Center(
-                child: CachedNetworkImage(
-                        fit: BoxFit.cover,
-                        imageUrl: imageUrl,
-                        
-                        placeholder: (context, url) {
-                          return SizedBox(
-                            width: 150,
-                            height: 100,
-                            child: Center(child: CircularProgressIndicator(
-                              color: AppColors.primaryColor,
-                            )),
-                          );
-                        },
-                        errorWidget: (context, url, error) {
-                          return Icon(Icons.error);
-                        },
+          SizedBox(
+            height: 90,
+            child: Center(
+              child: CachedNetworkImage(
+                fit: BoxFit.cover,
+                imageUrl: imageUrl,
+
+                placeholder: (context, url) {
+                  return SizedBox(
+                    width: 150,
+                    height: 100,
+                    child: Center(
+                      child: CircularProgressIndicator(
+                        color: AppColors.primaryColor,
                       ),
+                    ),
+                  );
+                },
+                errorWidget: (context, url, error) {
+                  return Icon(Icons.error);
+                },
               ),
             ),
-                
-           
+          ),
         ],
       ),
     );
